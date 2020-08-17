@@ -150,7 +150,7 @@ export const Login = () => {
         </div>
     
             <div className="form-group">
-                <button className="btn btn-success" disabled={!username} onClick={loginToChat}>Continue to AnyClipc Chat room</button>
+                <button className="btn btn-success" disabled={!username} onClick={loginToChat}>Continue to AnyClip Chat room</button>
             </div>
 
         </div>
