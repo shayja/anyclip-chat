@@ -5,6 +5,7 @@
         "secret": "1122"
     },
     "secret": "AnyClip==yiuk8xJrgkKI8kb+ATj5TjAyccZrd12x0JPCNjeaPBNuF",
-    "howManyChatMessages": 10
+    "howManyChatMessages": 10,
+    "uploadFolder": "/Dev/anyclip-chat/public/img/"
     
 }

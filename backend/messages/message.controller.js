@@ -29,7 +29,10 @@ function saveMessage(req, res, next) {
 function getLatest(req, res, next) {
     messageService.getLatest(config.howManyChatMessages)
     .then((data) => {
-        res.json(data);
+        // I need the latest rows from the data source but the sort should be by id asc.
+        // In sql I would write a query like this: 
+        // SELECT t.* FROM (SELECT * FROM `messages` ORDER BY `id` DESC LIMIT 10) t ORDER BY t.`id` ASC
+        res.json(data.reverse());
     })
     .catch(next);
 }

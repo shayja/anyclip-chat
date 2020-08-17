@@ -26,7 +26,7 @@ const getLatest = async (howManyRows) => {
         attributes: ['message', 'createdAt'] ,
         limit: howManyRows,
         order: [['id', 'DESC']]
-    })
+    });
 }
 
 
