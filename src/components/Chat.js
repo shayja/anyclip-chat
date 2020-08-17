@@ -3,21 +3,25 @@ import io from 'socket.io-client';
 import Notifications from './Notifications';
 import { userService } from '../services/user.service';
 import restApiService from '../services/restapi.service';
+import {formatToString} from '../helpers/utils';
+
 
 export const Chat = () => {
 
-    let [message, setMessage] = useState('');
-    let [messages, setMessages] = useState([]);
-    let [username, setUsername] = useState('');
-    let [avatar, setAvatar] = useState('');
+    const [message, setMessage] = useState('');
+    const [messages, setMessages] = useState([]);
+    const [username, setUsername] = useState('');
+    const [avatar, setAvatar] = useState('');
 
     useEffect(() => {
 
-        const user = userService.getUser();
+        // set once the current user from the user token.
+        const currentUser = userService.getUser();
 
-        setUsername(user.username);
-        setAvatar(user.avatar);
+        setUsername(currentUser.username);
+        setAvatar(currentUser.avatar);
 
+        // Get messages from data source
         getLatest();
         
     }, []);
@@ -40,9 +44,13 @@ export const Chat = () => {
         console.log('sendMessage');
 
         const chatMsg = {
-            author: username,
-            message: message,
-            avatar: avatar
+            message,
+            createdAt: new Date(),
+            user: {
+                username,
+                avatar,
+            }
+
         };
         
         socket.emit('SEND_MESSAGE', chatMsg);
@@ -55,7 +63,7 @@ export const Chat = () => {
         .then((data) => {
             if (data) {
                 console.log(data);  
-                Notifications.success('Message saved');
+                Notifications.success('Message saved', '');
             } else {
                 Notifications.error('Message save failed', 'error when saving to db.');
             }},
@@ -70,6 +78,10 @@ export const Chat = () => {
         .then((data) => {
             if (data) {
                 console.log(data);
+                // Set messages list.
+                if (data && data.length > 0){
+                    setMessages(data);
+                }
             } else {
                 Notifications.error('Latest messages', 'error when reading from db.');
             }},
@@ -89,9 +101,10 @@ export const Chat = () => {
                     {messages.map((message, i) => {
                         return (
                             <div key={i}>
-                                <img src={`${process.env.PUBLIC_URL}/img/${avatar}`} alt={message.author} />
-                                {message.author}: 
-                                {message.message}
+                                <img src={`${process.env.PUBLIC_URL}/img/${message.user.avatar || `none.png`}`} alt={message.user.username} />
+                                <strong>{message.user.username}</strong>:
+                                <span>{message.message}</span>
+                                <small className="float-right">{formatToString(message.createdAt)}</small>
                             </div>
                         )
                     })}

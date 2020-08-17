@@ -26,10 +26,10 @@ const User = sequelize.define('users', {
 }, {
   // Other model options go here
   indexes: [{ unique: true, fields: ['name'] }]
-});
+})
 
 const ChatMessage = sequelize.define('messages', {
-    user_id:{
+    userId:{
       type: Sequelize.INTEGER,
       allowNull: false
     },
@@ -38,6 +38,10 @@ const ChatMessage = sequelize.define('messages', {
       allowNull: false
     }
   });
+
+
+  User.hasMany(ChatMessage);
+  ChatMessage.belongsTo(User);
 
 
 try {
@@ -52,5 +56,6 @@ try {
 
 module.exports = {
     User,
-    ChatMessage
+    ChatMessage,
+    sequelize
 };

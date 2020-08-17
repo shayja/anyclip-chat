@@ -1,9 +1,9 @@
-const {ChatMessage} = require('../db');
+const {ChatMessage, User} = require('../db');
 
 const save = async ({ userId, message }) => {
     try {
         // Create a new user
-    await ChatMessage.create({ user_id: userId, message: message });
+    await ChatMessage.create({ userId: userId, message: message });
 
     } catch (error) {
         if (error){
@@ -16,7 +16,14 @@ const save = async ({ userId, message }) => {
 
 
 const getLatest = async (howManyRows) => {
+    
     return ChatMessage.findAll({ 
+        include: [{
+            model: User,
+            as: 'user',
+            attributes: ['username', 'avatar']     
+        }],
+        attributes: ['message', 'createdAt'] ,
         limit: howManyRows,
         order: [['id', 'DESC']]
     })
