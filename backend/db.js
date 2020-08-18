@@ -44,12 +44,15 @@ const ChatMessage = sequelize.define('messages', {
   ChatMessage.belongsTo(User);
 
 
-try {
-    sequelize.authenticate();
-    console.log('Connection to mysql has been established successfully.');
-    } catch (error) {
-    console.error('Unable to connect to the database:', error);
-    }
+  sequelize.authenticate()
+  .then(() => {
+    console.log('Sequelize has established mysql connection successfully.');
+  })
+  .catch(err => {
+    console.error('Sequelize was unable to connect to the database:', err);
+  });
+   
+
 
 // `sequelize.define` also returns the model
 // console.log(User === sequelize.models.User); // true
