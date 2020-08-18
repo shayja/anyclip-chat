@@ -1,8 +1,7 @@
-const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const socket = require('socket.io');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
 
 const app = express();
 
@@ -11,6 +10,9 @@ const PORT = process.env.PORT || 5000;
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
+// It's a test app so allow all cors requests
+app.use(cors({ origin: '*' }));
 
 const server = app.listen(PORT, function(){
     console.log(`server is running on port ${PORT}`)
@@ -27,18 +29,7 @@ io.on('connection', (socket) => {
     })
 });
 
-// it enables all cors requests
-app.use(cors()); 
 
-/*
-// to access the files in public folder
-const publicPath = path.join(__dirname, '..', 'public');
-app.use(express.static(publicPath));
-
-app.get('*', (req, res) => {
-    res.sendFile(path.join(publicPath, 'index.html'));
- });
-*/
 // api routes
 app.use('/accounts', require('./accounts/account.controller'));
 app.use('/messages', require('./messages/message.controller'));

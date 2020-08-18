@@ -101,7 +101,7 @@ export const Chat = () => {
                     {messages.map((message, i) => {
                         return (
                             <div key={i}>
-                                <img src={`${process.env.PUBLIC_URL}/img/${message.user.avatar || `none.png`}`} alt={message.user.username} />
+                                <img src={`${config.imageUrl}${message.user.avatar || `none.png`}`} alt={message.user.username} />
                                 <strong>{message.user.username}</strong>:
                                 <span>{message.message}</span>
                                 <small className="float-right">{formatToString(message.createdAt)}</small>

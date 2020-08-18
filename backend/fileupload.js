@@ -1,4 +1,4 @@
-const config = require('./config.json');
+const uploadFileFromBuffer = require('./fileupload-gcp');
 
 // file upload base 64
 const uploadBase64 = (base64Data, cb) => {
@@ -38,6 +38,11 @@ const uploadBase64 = (base64Data, cb) => {
     // This variable is actually an array which has 5 values, The [1] value is the real image extension
     const imageTypeDetected = imageBuffer.type.match(imageTypeRegularExpression);
     const uploadedFileName = uniqueRandomImageName + '.' + imageTypeDetected[1];
+    uploadFileFromBuffer(imageBuffer.data,uploadedFileName);
+    cb(uploadedFileName);
+
+
+    /*
     const userUploadedImagePath = config.uploadFolder + uploadedFileName;
 
     // Save decoded binary image to disk
@@ -48,6 +53,7 @@ const uploadBase64 = (base64Data, cb) => {
         cb(uploadedFileName);
         console.log('DEBUG - feed:message: Saved to disk image attached by user:', userUploadedImagePath, data);
     });
+    */
 }
 
 module.exports = uploadBase64;

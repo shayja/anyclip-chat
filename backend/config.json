@@ -1,12 +1,12 @@
 ﻿{
-    "dbprod" :{
+    "db" :{
         "host": "sql2.freesqldatabase.com",
         "port": 3306,
         "name": "sql2360990",
         "user": "sql2360990",
         "secret": "bD6!cM4%"
     },
-    "db" :{
+    "dblocal" :{
         "host": "localhost",
         "port": 3306,
         "name": "anyclip",
@@ -15,6 +15,7 @@
     },
     "secret": "AnyClip==yiuk8xJrgkKI8kb+ATj5TjAyccZrd12x0JPCNjeaPBNuF",
     "howManyChatMessages": 10,
-    "uploadFolder": "/Dev/anyclip-chat/public/img/"
+    "uploadFolder": "/Dev/anyclip-chat/public/img/",
+    "bucketName": "anyclip"
     
 }
