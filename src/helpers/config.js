@@ -1,3 +1,4 @@
 ﻿export const config = {
-    apiUrl: 'http://localhost:5000/'
+    // apiUrl: 'localhost:5000'
+    apiUrl: 'https://anyclip-chat-server.herokuapp.com/'
 };
