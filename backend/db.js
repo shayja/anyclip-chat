@@ -3,6 +3,7 @@ const config = require('./config.json');
 
 const sequelize = new Sequelize(config.db.name, config.db.user, config.db.secret, {
     host: config.db.host,
+    port: config.db.port,
     dialect: 'mysql'
   });
 
