@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "anyclip-chat",
+  "private_key_id": "13cb51a9e8437c83bd21031ae09b7005d641fd58",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCu8AfoRXacmWn2\n+nxRHeHrETDo3bUk6k2/FPhiAl+MhCEsm6jeUltlfPMhW5KEPoOQ6ClZDS75pxKI\ng78i7ULRaTxNY7sW8jb+jPsMp6fspV8Ros5lJiTkKJnZvA4UPOG4d9C+v07nfUPL\nNIoagskFql5qxg3OsDKcS374m9eWo0Z4Axg7nIzcZCpzDnH105QoRd6NGga/4jIU\nwQMFo40WQnrHyEKvnswgLUZW7N+Y36ijz1Ko+Rk6NOhRc35lAqan2TknW9AAhNwT\nvBgkSzuXeMsZtmUW2Y83RuQ1CZxRYr6sfv2qJbhdnGMOpWQkCoEt2yuplgvDH+QN\nqW9Tg/JDAgMBAAECggEAJR3Wf6ilVuqR+g4BbHCLq4VVPEM2GOQBpOY9IQZh4X1z\nUHSiarFMpQbSyyQTvS1KWud3RmaurdeN7hsN5cozYB0U51Kesmqn0nB1H6U+0s3v\nkt1ZL0rdju8yXWkyD4cvWSVKy/3pLuJ8DNRT7PYM0r/oEn19Fnp58oFuKi9emZ4m\nhIMK6Ej1BQDSxCsI6aizFiBX4PXjhUBJ7PRKPTUb+ltZB3I34j+zevCPcuhqSFvF\nilzT7k8mqvLNLIBkNNU0MemM8IcEzKet0s/AX759pmcWIz0aJU8xasfGDqjYC7Gw\nwfSvT3p8VIEp5zGN8Fjm9uzqITvs/n51+xl+RWZ6YQKBgQDtSmvwTC2WruOW6E40\n8OHn9hCgVFj2O3aNiUEmytg++kf9KU36Soe7r/WcKiEtPbUew9BQ7d2Dg9FQ88WA\nXCJvqT+mDxmP1c1a2gcuKnKzXpn+6A4T48HebCf0roOJGl4cLM31VSQ5ku/OAyi5\nRx27VswR0IZMtAXUj6ARlK0lsQKBgQC8uwwqlJRUYr+sgcniUNJJhK4ES9T1I1g8\nFBWET0de+7ePl3VqkylCSFbYYIg32xnJaFtizsTQ3TClksixcThFvUPk6QSRqIt1\nLQLceMoqIJdtk2B0D8+/MOjnRQCHmNtsZXwrsiYnhoJEXOPy3mtI9r71WvKUZNA5\nn7zc9whwMwKBgEocxWuvD0oR44l9kvecCKK/SuAYmBSH6/Y22T95eWLqHtPmM7Gp\n14z6XzbgPa54qHosZILyWA48fILRMG1v2V2Qug1uh+hRuarXkAiOP3bgZC6mYcc6\nipGirDQS0Yhf0Obx433tkrvctcNdXznHCXU6ndAuldOdInkKRs9W5WFxAoGADfeB\ntPz95SjRqoCIYjk89rfc8PBzuBh/hSKvXPVJANx7/yJkTBjL6t3Tn3u1WPzb8a3J\nZYyLwDE+UmKEe603TuHszln4PpdMisVj+tDtlSSIUFGhx7UL2MhT1BmlKmPDiUgR\nYmJytGYd6dU+AVE4e1PXWez7GsRDLKCHp4qYk0UCgYB+honyL5+1v1CLG4bAnB78\nKOniPIbdB+g6+qc5GxJhy2Tyt8ROUwkmZhbMEkS7oKT5xM0UJ0Hf/nDGcRfK/pxZ\nDFY3PLV6JtHJYatxhqs8/xjnlRleCox7QGPStiaZjsfCIIAc4LLlrpx/mB/ZYoSQ\nbqqFLEZclEpT4kCxE+LoJQ==\n-----END PRIVATE KEY-----\n",
+  "client_email": "anyclipuser@anyclip-chat.iam.gserviceaccount.com",
+  "client_id": "100520356408511251001",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/anyclipuser%40anyclip-chat.iam.gserviceaccount.com"
+}

@@ -13,14 +13,14 @@ function App() {
     <BrowserRouter>
        <div className="container">
        <Header />
-          <div className="row">
+    
                 <Route exact path="/" render={
                     () => (userService.isLoggedIn ? <Redirect to="/chat" /> : <Redirect to="/login" />)
                 } />
                 <Route path='/login' component={Login} />
                 <PrivateRoute path='/chat' component={Chat} />
           </div>
-      </div>
+      
     </BrowserRouter>
   );
 }

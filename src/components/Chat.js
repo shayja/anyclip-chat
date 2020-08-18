@@ -5,6 +5,8 @@ import { userService } from '../services/user.service';
 import restApiService from '../services/restapi.service';
 import {formatToString} from '../helpers/utils';
 import { config } from '../helpers/config';
+import './Chat.css';
+
 
 export const Chat = () => {
 
@@ -92,32 +94,49 @@ export const Chat = () => {
     };
     
     return (
-        <div className="col-md-8 col-md-offset-3">
-            <Notifications.NotificationContainer />
-            <div>
-                <h5>AnyClip Chat room</h5>
-                <hr/>
-                <div className="messages">
-                    {messages.map((message, i) => {
-                        return (
-                            <div key={i}>
-                                <img src={`${config.imageUrl}${message.user.avatar || `none.png`}`} alt={message.user.username} />
-                                <strong>{message.user.username}</strong>:
-                                <span>{message.message}</span>
-                                <small className="float-right">{formatToString(message.createdAt)}</small>
+
+
+
+<div>
+<Notifications.NotificationContainer />
+
+
+<div className="messaging">
+      <div className="inbox_msg">
+     
+
+          {messages.map((message, i) => {
+                const cls = i%2===0? `incoming`: `outgoing`;
+                return (
+                    <div key={i} className={cls+ `_msg`}>
+                        <div className={cls+ `_msg_img`}>
+                            <img src={`${config.imageUrl}${message.user.avatar || `none.png`}`} alt={message.user.username} />
+                        </div>
+                    
+                        <div className={cls+ `_txt`}>
+                            <div className={cls+ `_withd_msg`}>
+                                <p>{message.message}</p>
+                                <span className="time_date">{formatToString(message.createdAt)}</span>
                             </div>
-                        )
-                    })}
+                        </div>
+                    </div>
+                )
+            })}
+            
+            <div className="type_msg">
+                <div className="input_msg_write">
+                    <input type="text" placeholder="Message" className="write_msg" value={message} onChange={e => setMessage(e.target.value)}/>
+                    <button onClick={sendMessage} className="btn btn-primary btn-sm">Send</button>
                 </div>
             </div>
-            <div className="form-group">
-                <input type="text" placeholder="Message" className="form-control" value={message} onChange={e => setMessage(e.target.value)}/>
             </div>
-
-            <div className="form-group">
-                <button onClick={sendMessage} className="btn btn-primary form-control">Send</button>
-            </div>
-
         </div>
+      
+      
+      <p className="text-center top_spac">AnyClip chat app (Shay Jacoby Test 2020)</p>
+      
+
+    </div>
+    
     );
 };
