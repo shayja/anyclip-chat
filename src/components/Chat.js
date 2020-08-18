@@ -4,7 +4,7 @@ import Notifications from './Notifications';
 import { userService } from '../services/user.service';
 import restApiService from '../services/restapi.service';
 import {formatToString} from '../helpers/utils';
-
+import { config } from '../helpers/config';
 
 export const Chat = () => {
 
@@ -26,7 +26,7 @@ export const Chat = () => {
         
     }, []);
 
-    const socket = io('localhost:5000');
+    const socket = io(config.apiUrl);
 
     socket.on('RECEIVE_MESSAGE', function(data){
         console.log('RECEIVE_MESSAGE', data);
