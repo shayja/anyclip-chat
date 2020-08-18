@@ -3,7 +3,7 @@
         "name": "anyclip",
         "user": "shayja",
         "secret": "jehirer803@academail.net",
-        "host": "db4free.net"
+        "host": "db4free.net:3306"
     },    
     "secret": "AnyClip==yiuk8xJrgkKI8kb+ATj5TjAyccZrd12x0JPCNjeaPBNuF",
     "howManyChatMessages": 10,
