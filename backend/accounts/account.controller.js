@@ -11,21 +11,28 @@ const authenticate = (req, res, next) => {
 
     const account = {username, ipAddress: req.ip};
 
-    const imageUploaded = (fileName) => {
-        
-        account.avatar = fileName;
 
+    const saveUser = ()=>{
         accountService.authenticate(account)
-            .then((account) => {
-                console.log(account);
+        .then((account) => {
+            console.log(account);
+            // setTokenCookie(res, refreshToken);
+            res.json(account);
+        })
+        .catch(next);
+    }
 
-                // setTokenCookie(res, refreshToken);
-                res.json(account);
-            })
-            .catch(next);
+    const imageUploaded = (fileName) => {
+        account.avatar = fileName;
+        saveUser();
     };
-
-    uploadBase64(avatar, imageUploaded);   
+    
+    if (avatar && avatar.length > 0){
+        uploadBase64(avatar, imageUploaded);
+    } else {
+        saveUser();
+    }
+     
 }
 
 // routes

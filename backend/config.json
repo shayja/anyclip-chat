@@ -1,12 +1,12 @@
 ﻿{
-    "db" :{
+    "dblocal" :{
         "host": "sql2.freesqldatabase.com",
         "port": 3306,
         "name": "sql2360990",
         "user": "sql2360990",
         "secret": "bD6!cM4%"
     },
-    "dblocal" :{
+    "db" :{
         "host": "localhost",
         "port": 3306,
         "name": "anyclip",

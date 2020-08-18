@@ -76,12 +76,13 @@ export const Login = () => {
             Notifications.error('Login failed', 'please enter username');
             return false;
         }
-
+        /*
         if (!avatar || avatar.length === 0){
             console.log('validate: avatar image');
             Notifications.error('Login failed', 'please upload your avatar image');
             return false;
         }
+        */
         return true;
     }
 
