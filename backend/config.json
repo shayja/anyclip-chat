@@ -1,9 +1,13 @@
 ﻿{
     "db" :{
         "name": "anyclip",
-        "user": "root",
-        "secret": "1122"
-    },
+        "user": "shayja",
+        "secret": "jehirer803@academail.net",
+        "host": "db4free.net"
+        // "name": "anyclip",
+        // "user": "root",
+        // "secret": "1122"
+    },    
     "secret": "AnyClip==yiuk8xJrgkKI8kb+ATj5TjAyccZrd12x0JPCNjeaPBNuF",
     "howManyChatMessages": 10,
     "uploadFolder": "/Dev/anyclip-chat/public/img/"

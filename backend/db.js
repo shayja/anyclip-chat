@@ -2,7 +2,7 @@ const { Sequelize } = require('sequelize');
 const config = require('./config.json');
 
 const sequelize = new Sequelize(config.db.name, config.db.user, config.db.secret, {
-    host: 'localhost',
+    host: config.db.host,
     dialect: 'mysql'
   });
 
