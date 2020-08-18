@@ -27,17 +27,18 @@ io.on('connection', (socket) => {
     })
 });
 
+// it enables all cors requests
+app.use(cors()); 
+
+/*
 // to access the files in public folder
 const publicPath = path.join(__dirname, '..', 'public');
 app.use(express.static(publicPath));
 
-// it enables all cors requests
-app.use(cors()); 
-
 app.get('*', (req, res) => {
     res.sendFile(path.join(publicPath, 'index.html'));
  });
-
+*/
 // api routes
 app.use('/accounts', require('./accounts/account.controller'));
 app.use('/messages', require('./messages/message.controller'));
