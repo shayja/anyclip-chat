@@ -26,7 +26,7 @@ export const Chat = () => {
         
     }, []);
 
-    const socket = io('localhost:3001');
+    const socket = io('localhost:5000');
 
     socket.on('RECEIVE_MESSAGE', function(data){
         console.log('RECEIVE_MESSAGE', data);
