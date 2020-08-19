@@ -21,13 +21,22 @@ const server = app.listen(PORT, function(){
 const io = socket(server);
 
 io.on('connection', (socket) => {
-    console.log(socket.id);
 
-    socket.on('SEND_MESSAGE', function(data){
-        console.log('socket.on SEND_MESSAGE');
+    console.log(`User connected ${socket.id}`);
+
+    // On client request
+    socket.on('SEND_MESSAGE', (data) => {
+        console.log(`socket.on SEND_MESSAGE ${socket.id}`);  
         io.emit('RECEIVE_MESSAGE', data);
-    })
+    });
+
+    // Once the second server has finished his job
+    socket.on('disconnect', () => {
+        console.log(`disconnect`);
+        socket.disconnect();
+    });
 });
+
 
 
 // api routes

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import io from 'socket.io-client';
 import Notifications from './Notifications';
 import { userService } from '../services/user.service';
 import restApiService from '../services/restapi.service';
 import {formatToString} from '../helpers/utils';
 import { config } from '../helpers/config';
 import './Chat.css';
-
+const io = require('socket.io-client');
+const socket = io(config.apiUrl);
 
 export const Chat = () => {
 
@@ -14,6 +14,8 @@ export const Chat = () => {
     const [messages, setMessages] = useState([]);
     const [username, setUsername] = useState('');
     const [avatar, setAvatar] = useState('');
+
+   
 
     useEffect(() => {
 
@@ -26,24 +28,33 @@ export const Chat = () => {
         // Get messages from data source
         getLatest();
         
+        socket.on('RECEIVE_MESSAGE', function(data){
+            console.log('RECEIVE_MESSAGE', data);
+            setMessages(messages => [...messages, data])
+
+        });
+
     }, []);
 
-    const socket = io(config.apiUrl);
+    
 
-    socket.on('RECEIVE_MESSAGE', function(data){
-        console.log('RECEIVE_MESSAGE', data);
-        addMessage(data);
-    });
+    const saveMessage = async(chatMsg) => {
+        await restApiService.postAsync(`messages/save`, chatMsg)
+        .then((success) => {
+            if (success) {
+                console.log('saveMessageToDb=', success);  
+                Notifications.success('Message saved', '');
+            } else {
+                Notifications.error('Message save failed', 'error when saving to db.');
+            }},
+            (error) => {
+                Notifications.error('Message save failed', error);
+              }
+        )
+    };    
 
-    const addMessage = data => {
-        console.log(data);
-        setMessages([...messages, data]);
-        console.log(messages);
-    };
-
-    const sendMessage = async(ev) => {
-        ev.preventDefault();
-        console.log('sendMessage');
+    const handleNewMessage = () => {
+        console.log('emitting new message');
 
         const chatMsg = {
             message,
@@ -56,30 +67,16 @@ export const Chat = () => {
         };
         
         socket.emit('SEND_MESSAGE', chatMsg);
-        await saveMessage(chatMsg);
+        saveMessage(chatMsg);
         setMessage('');
     }
 
-    const saveMessage = async(chatMsg) => {
-        await restApiService.postAsync(`messages/save`, chatMsg)
-        .then((data) => {
-            if (data) {
-                console.log(data);  
-                Notifications.success('Message saved', '');
-            } else {
-                Notifications.error('Message save failed', 'error when saving to db.');
-            }},
-            (error) => {
-                Notifications.error('Message save failed', error);
-              }
-        )
-    };
 
     const getLatest = async() => {
         await restApiService.getAsync(`messages/get-latest`)
         .then((data) => {
             if (data) {
-                console.log(data);
+                console.log('getLatest', data);
                 // Set messages list.
                 if (data && data.length > 0){
                     setMessages(data);
@@ -93,11 +90,12 @@ export const Chat = () => {
         )
     };
     
+   
     return (
 
 
 
-<div>
+<React.Fragment>
 <Notifications.NotificationContainer />
 
 
@@ -126,7 +124,7 @@ export const Chat = () => {
             <div className="type_msg">
                 <div className="input_msg_write">
                     <input type="text" placeholder="Message" className="write_msg" value={message} onChange={e => setMessage(e.target.value)}/>
-                    <button onClick={sendMessage} className="btn btn-primary btn-sm">Send</button>
+                    <button onClick={() => handleNewMessage()} className="btn btn-primary btn-sm">Send</button>
                 </div>
             </div>
             </div>
@@ -136,7 +134,7 @@ export const Chat = () => {
       <p className="text-center top_spac">AnyClip chat app (Shay Jacoby Test 2020)</p>
       
 
-    </div>
+    </React.Fragment>
     
     );
 };
