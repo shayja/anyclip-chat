@@ -107,7 +107,8 @@ export const Login = () => {
                 Notifications.error('Chat Login failed', 'No token returned.');
             }},
             (error) => {
-                Notifications.error('Chat Login failed', error);
+                const msg = error.error || error || '';
+                Notifications.error('Chat Login failed', msg);
               }
         )
     };

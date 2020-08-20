@@ -25,7 +25,8 @@ const uploadBase64 = (base64Data, cb) => {
         return response;
     }
 
-    const fs = require('fs');
+    // const fs = require('fs');
+    
     // Regular expression for image type: This regular image extracts the "jpeg" from "image/jpeg"
     const imageTypeRegularExpression = /\/(.*?)$/;      
     // Generate random string

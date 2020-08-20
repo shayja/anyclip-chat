@@ -1,10 +1,10 @@
 const express = require('express');
 const cors = require('cors');
-const socket = require('socket.io');
 const bodyParser = require('body-parser');
-
 const app = express();
+const chatSocket = require('./chat.socket');
 
+// Set the port by env or default.
 const PORT = process.env.PORT || 5000;
 
 app.use(bodyParser.json()); // for parsing application/json
@@ -18,28 +18,21 @@ const server = app.listen(PORT, function(){
     console.log(`server is running on port ${PORT}`)
 });
 
-const io = socket(server);
-
-io.on('connection', (socket) => {
-
-    console.log(`User connected ${socket.id}`);
-
-    // On client request
-    socket.on('SEND_MESSAGE', (data) => {
-        console.log(`socket.on SEND_MESSAGE ${socket.id}`);  
-        io.emit('RECEIVE_MESSAGE', data);
-    });
-
-    // Once the second server has finished his job
-    socket.on('disconnect', () => {
-        console.log(`disconnect`);
-        socket.disconnect();
-    });
-});
-
-
+// init chat socket.
+chatSocket(server);
 
 // api routes
 app.use('/accounts', require('./accounts/account.controller'));
 app.use('/messages', require('./messages/message.controller'));
 
+// send errors as json
+app.use(function(err, req, res, next) {
+  // Log error message in our server's console
+  console.error(err.message);
+  if (!err.statusCode) {
+    // If err has no specified error code, set error code to 'Internal Server Error (500)'
+    err.statusCode = 500; 
+  }
+  // All HTTP requests must have a response, so let's send back an error with its status
+  res.status(err.statusCode).send({error : err.message}); 
+});

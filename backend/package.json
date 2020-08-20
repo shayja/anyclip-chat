@@ -1,7 +1,7 @@
 {
   "name": "anyclip-chat-server",
   "version": "1.0.0",
-  "description": "AnyClip chat app from Shay Jacoby",
+  "description": "AnyClip chat server from Shay Jacoby",
   "start": "node app.js",
   "scripts": {
     "start:dev": "nodemon ./app.js",

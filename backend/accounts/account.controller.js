@@ -11,7 +11,6 @@ const authenticate = (req, res, next) => {
 
     const account = {username, ipAddress: req.ip};
 
-
     const saveUser = ()=>{
         accountService.authenticate(account)
         .then((account) => {
