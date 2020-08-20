@@ -1,5 +1,4 @@
-﻿import Notifications from '../components/Notifications';
-// import { userService } from '../services/user.service';
+﻿import Notifications from '../helpers/Notifications';
 
 export const globalService = {
     handleResponse,

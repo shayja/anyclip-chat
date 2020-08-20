@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router';
-import Notifications from './Notifications';
+import Notifications from '../helpers/Notifications';
 import restApiService from '../services/restapi.service';
 import { userService } from '../services/user.service';
 

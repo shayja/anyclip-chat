@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Notifications from './Notifications';
+import Notifications from '../helpers/Notifications';
 import { userService } from '../services/user.service';
 import restApiService from '../services/restapi.service';
 import {formatToString} from '../helpers/utils';
