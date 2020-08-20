@@ -1,6 +1,5 @@
 import React from 'react';
-import { Route, Redirect } from 'react-router';
-import { BrowserRouter } from 'react-router-dom';
+import { Route, Redirect, BrowserRouter } from 'react-router-dom';
 import {Chat} from './components/Chat';
 import {Login} from './components/Login';
 import Header from './components/Header';

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Redirect } from 'react-router';
+import { Redirect } from 'react-router-dom';
 import Notifications from '../helpers/Notifications';
 import restApiService from '../services/restapi.service';
 import { userService } from '../services/user.service';
@@ -25,14 +25,14 @@ export const Login = () => {
         let errormessage = null;
         if (value) {
             const validFileExtensions = ['image/jpg', 'image/png', 'image/jpeg'];
-            console.log("file size : ", value.size);
-            console.log("file type : ", value.type);
+            console.log(`file size: ${value.size}, type: ${value.type}`);
+
             if (!validFileExtensions.includes(value.type)) {
                 const ext = validFileExtensions.join();
                 errormessage = `Please upload file type: ${ext.replace(/image/g, "").replace(/,/g, "")}`;
             }
             else if (value.size > 3145728) {
-                console.log("file size : ", value.size);
+                console.log(`current file size is too large: ${value.size}`);
                 errormessage = `File size limit is 3 MB`;
             }
         }
@@ -54,7 +54,7 @@ export const Login = () => {
     const imageToBase64 = (imageFile) => {
 
         if (avatar) {
-            console.log("image file", imageFile);
+            console.log(`imageToBase64->imageFile: ${imageFile}`);
             let reader = new FileReader();
 
             reader.readAsDataURL(imageFile);
@@ -134,8 +134,8 @@ export const Login = () => {
     return (
         <div className="col-md-8 col-md-offset-3">
         
-        <div className="row">
-            <Notifications.NotificationContainer />
+            <div className="row">
+                <Notifications.NotificationContainer />
                 <div className="col-sm">
                     <div className="form-group">
                         <label htmlFor="username">Username:</label>
@@ -149,8 +149,8 @@ export const Login = () => {
                         <input name="avatar" type="file" multiple={false} accept="image/jpeg, image/png, image/gif" className="form-control" onChange={validateFileUpload} />
                     </div>
                 </div>
-        </div>
-    
+            </div>
+        
             <div className="form-group">
                 <button className="btn btn-success" disabled={!username} onClick={loginToChat}>Continue to AnyClip Chat room</button>
             </div>

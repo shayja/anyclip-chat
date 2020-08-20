@@ -3,10 +3,14 @@ import Notifications from '../helpers/Notifications';
 import { userService } from '../services/user.service';
 import restApiService from '../services/restapi.service';
 import {formatToString} from '../helpers/utils';
-import { config } from '../helpers/config';
 import './Chat.css';
 const io = require('socket.io-client');
-const socket = io(config.apiUrl);
+
+if (!process.env.REACT_APP_API_BASE_URL){
+    throw new Error('FATAL ERROR: API_URL is not configured.');
+}
+
+const socket = io(process.env.REACT_APP_API_BASE_URL);
 
 export const Chat = () => {
 
@@ -14,8 +18,6 @@ export const Chat = () => {
     const [messages, setMessages] = useState([]);
     const [username, setUsername] = useState('');
     const [avatar, setAvatar] = useState('');
-
-   
 
     useEffect(() => {
 
@@ -36,8 +38,7 @@ export const Chat = () => {
 
     }, []);
 
-    
-
+    // save message to data source
     const saveMessage = async(chatMsg) => {
         await restApiService.postAsync(`messages/save`, chatMsg)
         .then((success) => {
@@ -96,19 +97,16 @@ export const Chat = () => {
 
 
 <React.Fragment>
-<Notifications.NotificationContainer />
+    <Notifications.NotificationContainer />
 
-
-<div className="messaging">
+    <div className="messaging">
       <div className="inbox_msg">
-     
-
-          {messages.map((message, i) => {
+            {messages.map((message, i) => {
                 const cls = i%2===0? `incoming`: `outgoing`;
                 return (
                     <div key={i} className={cls+ `_msg`}>
                         <div className={cls+ `_msg_img`}>
-                            <img src={`${config.imageUrl}${message.user.avatar || `none.png`}`} alt={message.user.username} />
+                            <img src={`${process.env.IMG_URL}${message.user.avatar || `none.png`}`} alt={message.user.username} />
                         </div>
                     
                         <div className={cls+ `_txt`}>
@@ -127,14 +125,14 @@ export const Chat = () => {
                     <button onClick={() => handleNewMessage()} className="btn btn-primary btn-sm">Send</button>
                 </div>
             </div>
-            </div>
         </div>
-      
-      
-      <p className="text-center top_spac">AnyClip chat app (Shay Jacoby Test 2020)</p>
-      
-
-    </React.Fragment>
+    </div>
     
+    
+    <p className="text-center top_spac">AnyClip chat app (Shay Jacoby Test 2020)</p>
+    
+
+</React.Fragment>
+
     );
 };
