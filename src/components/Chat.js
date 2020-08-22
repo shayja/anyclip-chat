@@ -107,27 +107,26 @@ export const Chat = () => {
     {isLoading ? (
        
         <img alt="Loading" src={`${process.env.PUBLIC_URL}/img/loading.gif`} />
-
        
       ) : (
         <div className="messaging">
             <div className="inbox_msg">
-                    {messages.map((message, i) => {
-                        return (
-                            <div key={i} className={i%2===0? `incoming`: `outgoing`}>
-                                <div className="img">
-                                    <img src={`${process.env.REACT_APP_IMG_URL}${message.user.avatar || `none.png`}`} alt={message.user.username} />
-                                </div>
-                                <div className="txt">
-                                    <p>{message.message}</p>
-                                    <small>{formatToString(message.createdAt)}</small>
-                                </div>
+                {messages.map((message, i) => {
+                    return (
+                        <div key={i} className={i%2===0? `incoming`: `outgoing`}>
+                            <div className="img">
+                                <img src={`${process.env.REACT_APP_IMG_URL}${message.user.avatar || `none.png`}`} alt={message.user.username} />
                             </div>
-                        )
-                    })}
-                    
-                    <input type="text" placeholder="Your Message" className="form-control" value={message} onChange={e => setMessage(e.target.value)}/>
-                    <button onClick={() => handleNewMessage()} className="btn btn-primary btn-sm">Send</button>
+                            <div className="txt">
+                                <p>{message.message}</p>
+                                <small>{formatToString(message.createdAt)}</small>
+                            </div>
+                        </div>
+                    )
+                })}
+                
+                <input type="text" placeholder="Your Message" className="form-control" value={message} onChange={e => setMessage(e.target.value)}/>
+                <button onClick={() => handleNewMessage()} className="btn btn-primary btn-sm">Send</button>
                
             </div>
         </div>
