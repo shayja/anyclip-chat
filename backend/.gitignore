@@ -20,3 +20,4 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 anyclip-chat-262e5b1ed58a.json
+*.env
