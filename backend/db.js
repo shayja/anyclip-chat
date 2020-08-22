@@ -1,9 +1,10 @@
 const { Sequelize } = require('sequelize');
-const config = require('./config/config.json');
+const { parseEnv, parseEnvNumber } = require('./config/index');
 
-const sequelize = new Sequelize(config.db.name, config.db.user, config.db.secret, {
-    host: config.db.host,
-    port: config.db.port,
+
+const sequelize = new Sequelize(parseEnv("DATABASE_NAME"), parseEnv("DATABASE_USERNAME"), parseEnv("DATABASE_PASSWORD"), {
+    host: parseEnv("DATABASE_URL"),
+    port: parseEnvNumber("DATABASE_PORT", 3306),
     dialect: 'mysql'
   });
 

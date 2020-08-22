@@ -1,11 +1,11 @@
 const {Storage} = require('@google-cloud/storage');
 const path = require('path');
-const config = require('./config/config.json');
+const { parseEnv } = require('./config/index');
 
 // Instantiate the GCP Storage instance
 const storage = new Storage({ 
   projectId: 'anyclip-chat',
-  keyFilename: path.join(__dirname, 'config', 'anyclip-chat-262e5b1ed58a.json')
+  keyFilename: path.join(__dirname, 'config','anyclip-chat-262e5b1ed58a.json')
 });
 
 /*
@@ -24,7 +24,9 @@ const uploadFile = async(filename) => {
 const uploadFileFromBuffer = async(imageBuffer, filename) => {
 
     // Upload the image to the bucket
-    const bucket = await storage.bucket(config.bucketName);
+    const bucket = await storage.bucket(parseEnv("BUCKET_NAME"));
+
+    console.log(bucket);
 /*
     bucket.acl.add({
         entity: 'allUsers',
@@ -35,7 +37,7 @@ const uploadFileFromBuffer = async(imageBuffer, filename) => {
 */
     bucket.file(filename).save(imageBuffer, (err) => {
       if (!err) {
-        console.log(`${filename} uploaded to ${config.bucketName}.`);
+        console.log(`${filename} uploaded to ${bucket.id}.`);
         return filename;
       } else {
         throw new Error('Unable to upload the image.' + err);

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const messageService = require('./message.service');
-const config = require('../config/config.json');
+const { parseEnvNumber } = require('../config/index');
 const authorize = require('../middleware/authorize');
 
 // routes
@@ -27,7 +27,7 @@ function saveMessage(req, res, next) {
 }
 
 function getLatest(req, res, next) {
-    messageService.getLatest(config.howManyChatMessages)
+    messageService.getLatest(parseEnvNumber("HOW_MANY_CHAT_MESSAGES"))
     .then((data) => {
         // I need the latest rows from the data source but the sort should be by id asc.
         // In sql I would write a query like this: 

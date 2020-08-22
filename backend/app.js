@@ -1,11 +1,26 @@
 const express = require('express');
+
+
+const dotenv = require('dotenv');
+const result = dotenv.config({silent: true})
+
+if (result.error) {
+  if (process.env.NODE_ENV === 'production' && result.error.code === 'ENOENT') {
+    console.info('expected this error because we are in production without a .env file');
+  } else {
+    throw result.error;
+  }
+}
+
+console.log(process.env.NODE_ENV);
+
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const app = express();
 const chatSocket = require('./chat.socket');
 
 // Set the port by env or default.
-const PORT = process.env.PORT || 5000;
+const port = process.env.PORT || 5000;
 
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -14,8 +29,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // It's a test app so allow all cors requests
 app.use(cors({ origin: '*' }));
 
-const server = app.listen(PORT, function(){
-    console.log(`server is running on port ${PORT}`)
+const server = app.listen(port, function(){
+    console.log(`server is running on port ${port}`)
 });
 
 // init chat socket.

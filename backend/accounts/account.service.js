@@ -1,5 +1,5 @@
 ﻿const jwt = require('jsonwebtoken');
-const config = require('../config/config.json');
+const { parseEnv } = require('../config/index');
 const {User} = require('../db');
 
 const authenticate = async (account) => {
@@ -31,7 +31,7 @@ const authenticate = async (account) => {
 const generateJwtToken =  (account, userId) => {
 // function generateJwtToken(account) {
     // create a jwt token containing the account id that expires in 15 minutes
-    return jwt.sign({ sub: account.username, id: userId }, config.secret, { expiresIn: '7d' });
+    return jwt.sign({ sub: account.username, id: userId }, parseEnv("TOKEN_SECRET"), { expiresIn: '7d' });
 }
 
 module.exports = {

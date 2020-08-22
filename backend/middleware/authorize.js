@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const config = require('../config/config.json');
+const { parseEnv } = require('../config/index');
 
 const authorize = (req, res, next) => {
 
@@ -8,7 +8,7 @@ const authorize = (req, res, next) => {
   const token = authHeader && authHeader.split(' ')[1]
   if (token == null) return res.sendStatus(401) // if there isn't any token
 
-  jwt.verify(token, config.secret, (err, user) => {
+  jwt.verify(token, parseEnv("TOKEN_SECRET"), (err, user) => {
     console.log(err)
     if (err) {
         return res.sendStatus(403)
