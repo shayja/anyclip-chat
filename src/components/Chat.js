@@ -106,7 +106,7 @@ export const Chat = () => {
                 return (
                     <div key={i} className={cls+ `_msg`}>
                         <div className={cls+ `_msg_img`}>
-                            <img src={`${process.env.IMG_URL}${message.user.avatar || `none.png`}`} alt={message.user.username} />
+                            <img src={`${process.env.REACT_APP_IMG_URL}${message.user.avatar || `none.png`}`} alt={message.user.username} />
                         </div>
                     
                         <div className={cls+ `_txt`}>

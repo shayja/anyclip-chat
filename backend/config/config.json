@@ -16,6 +16,6 @@
     "secret": "AnyClip==yiuk8xJrgkKI8kb+ATj5TjAyccZrd12x0JPCNjeaPBNuF",
     "howManyChatMessages": 10,
     "uploadFolder": "/Dev/anyclip-chat/public/img/",
-    "bucketName": "anyclip"
+    "bucketName": "anyclip-public"
     
 }

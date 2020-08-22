@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const messageService = require('./message.service');
-const config = require('../config.json');
+const config = require('../config/config.json');
 const authorize = require('../middleware/authorize');
 
 // routes
