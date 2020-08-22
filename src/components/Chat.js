@@ -113,38 +113,27 @@ export const Chat = () => {
         <div className="messaging">
             <div className="inbox_msg">
                     {messages.map((message, i) => {
-                        const cls = i%2===0? `incoming`: `outgoing`;
                         return (
-                            <div key={i} className={cls+ `_msg`}>
-                                <div className={cls+ `_msg_img`}>
+                            <div key={i} className={i%2===0? `incoming`: `outgoing`}>
+                                <div className="img">
                                     <img src={`${process.env.REACT_APP_IMG_URL}${message.user.avatar || `none.png`}`} alt={message.user.username} />
                                 </div>
-                            
-                                <div className={cls+ `_txt`}>
-                                    <div className={cls+ `_withd_msg`}>
-                                        <p>{message.message}</p>
-                                        <span className="time_date">{formatToString(message.createdAt)}</span>
-                                    </div>
+                                <div className="txt">
+                                    <p>{message.message}</p>
+                                    <small>{formatToString(message.createdAt)}</small>
                                 </div>
                             </div>
                         )
                     })}
                     
-                <div className="type_msg">
-                    <div className="input_msg_write">
-                        <input type="text" placeholder="Message" className="write_msg" value={message} onChange={e => setMessage(e.target.value)}/>
-                        <button onClick={() => handleNewMessage()} className="btn btn-primary btn-sm">Send</button>
-                    </div>
-                </div>
+                    <input type="text" placeholder="Your Message" className="form-control" value={message} onChange={e => setMessage(e.target.value)}/>
+                    <button onClick={() => handleNewMessage()} className="btn btn-primary btn-sm">Send</button>
+               
             </div>
         </div>
       )}
 
-
-    
-    
-    
-    <p className="text-center top_spac">AnyClip chat app (Shay Jacoby Test 2020)</p>
+    <p className="credit">AnyClip chat app (Shay Jacoby Test 2020)</p>
     
 
 </React.Fragment>
