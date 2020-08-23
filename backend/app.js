@@ -1,6 +1,6 @@
 const express = require('express');
 
-
+// dotenv init
 const dotenv = require('dotenv');
 const result = dotenv.config({silent: true})
 
@@ -11,8 +11,7 @@ if (result.error) {
     throw result.error;
   }
 }
-
-console.log(process.env.NODE_ENV);
+// end dotenv
 
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -22,9 +21,9 @@ const chatSocket = require('./chat.socket');
 // Set the port by env or default.
 const port = process.env.PORT || 5000;
 
-app.use(bodyParser.json()); // for parsing application/json
+// for parsing application/json
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
 
 // It's a test app so allow all cors requests
 app.use(cors({ origin: '*' }));

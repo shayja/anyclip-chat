@@ -133,21 +133,21 @@ export const Login = () => {
     return (
         <div className="container">
             <div className="col-md-6">
-                    <Notifications.NotificationContainer />
-                    <div className="col-sm">
-                        <div className="form-group">
-                            <label htmlFor="username">Username:</label>
-                            <input name="username" type="text" placeholder="Choose Username" value={username} onChange={inputChangeHandler} className="form-control"/>
-                        </div>
+                <Notifications.NotificationContainer />
+                <div className="col-sm">
+                    <div className="form-group">
+                        <label htmlFor="username">Username:</label>
+                        <input name="username" type="text" placeholder="Choose Username" value={username} onChange={inputChangeHandler} className="form-control"/>
                     </div>
-                    
-                    <div className="col-sm">
-                        <div className="form-group">
-                            <label htmlFor="avatar">Upload avatar</label>
-                            <input name="avatar" type="file" multiple={false} accept="image/jpeg, image/png, image/gif" className="form-control" onChange={validateFileUpload} />
-                        </div>
+                </div>
+                
+                <div className="col-sm">
+                    <div className="form-group">
+                        <label htmlFor="avatar">Upload avatar</label>
+                        <input name="avatar" type="file" multiple={false} accept="image/jpeg, image/png, image/gif" className="form-control" onChange={validateFileUpload} />
                     </div>
-            
+                </div>
+        
             
                 <div className="form-group">
                     <button className="btn btn-success" disabled={!username} onClick={loginToChat}>Continue to AnyClip Chat room</button>
