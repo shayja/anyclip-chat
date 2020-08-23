@@ -1,11 +1,26 @@
+.messaging {
+	padding: 0 0 50px 0;
+	clear: both;
+	overflow: hidden;
+	padding: 0 5px;
+}
+
+.messaging .form-control {
+	margin-bottom: 20px;
+}
+
 .messaging img {
 	max-width: 100%;
 }
 
-.inbox_msg {
-	clear: both;
-	overflow: hidden;
-	padding: 0 5px;
+.messaging .img {
+	display: inline-block;
+	width: 6%;
+}
+
+.messaging small {
+	color: #747474;
+	margin: 8px 0 0;
 }
 
 .credit {
@@ -50,18 +65,8 @@
 	color: #fff;
 }
 
-.inbox_msg .img {
-	display: inline-block;
-	width: 6%;
-}
-
 .outgoing .img {
 	float: right;
-}
-
-.inbox_msg small {
-	color: #747474;
-	margin: 8px 0 0;
 }
 
 .incoming small {
@@ -70,14 +75,6 @@
 
 .outgoing small {
 	float: left;
-}
-
-.messaging {
-	padding: 0 0 50px 0;
-}
-
-.messaging .form-control {
-	margin-bottom: 20px;
 }
 
 .credit {

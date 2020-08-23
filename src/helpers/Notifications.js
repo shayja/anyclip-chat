@@ -5,7 +5,12 @@ const notificationInMs = 2000;
 const errorNotificationInMs = 1000 * 15;
 
 let wrapper = (title, message, callback, name) => {
-    let ms = name === "error" ? errorNotificationInMs : notificationInMs;
+    const ms = name === 'error' ? errorNotificationInMs : notificationInMs;
+
+    if (name === 'error' && message.error){
+        message = message.error;
+    }
+
     NotificationManager[name](message, title, ms, callback);
     if (callback) {
         window.setTimeout(callback, ms);
