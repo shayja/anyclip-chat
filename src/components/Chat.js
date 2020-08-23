@@ -100,8 +100,8 @@ export const Chat = () => {
     return (
 
 
+<div className="container">
 
-<React.Fragment>
     <Notifications.NotificationContainer />
 
     {isLoading ? (
@@ -133,7 +133,7 @@ export const Chat = () => {
     <p className="credit">AnyClip chat app (Shay Jacoby Test 2020)</p>
     
 
-</React.Fragment>
+</div>
 
     );
 };

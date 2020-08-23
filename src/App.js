@@ -10,14 +10,12 @@ import './App.css';
 function App() {
   return (
     <BrowserRouter>
-       <div className="container">
           <Header />
           <Route exact path="/" render={
               () => (userService.isLoggedIn ? <Redirect to="/chat" /> : <Redirect to="/login" />)
           } />
           <Route path='/login' component={Login} />
           <PrivateRoute path='/chat' component={Chat} />
-      </div>
     </BrowserRouter>
   );
 }
