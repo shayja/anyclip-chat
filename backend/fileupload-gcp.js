@@ -26,15 +26,6 @@ const uploadFileFromBuffer = async(imageBuffer, filename) => {
     // Upload the image to the bucket
     const bucket = await storage.bucket(parseEnv("BUCKET_NAME"));
 
-    console.log(bucket);
-/*
-    bucket.acl.add({
-        entity: 'allUsers',
-        role: storage.acl.READER_ROLE
-    }, function (err, aclObject) {
-        console.error('err -> ', err);
-    });
-*/
     bucket.file(filename).save(imageBuffer, (err) => {
       if (!err) {
         console.log(`${filename} uploaded to ${bucket.id}.`);
