@@ -1,50 +1,43 @@
-export const userService = {
-    getUser,
-    logout,
-    deleteUserFromStorage,
-    isLoggedIn,
-    getAuthHeader,
-    auth
-};
-
-function getUser() {
+const userService = {
+  getUser: () => {
     const user = JSON.parse(localStorage.getItem('user'));
     // console.log('getUser', user);
     return user;
-}
+  },
 
-/**
- * remove user from local storage to log user out
- * */
-function deleteUserFromStorage() {
-    localStorage.removeItem('user'); 
-}
+  /**
+     * remove user from local storage to log user out
+     * */
+  deleteUserFromStorage: () => {
+    localStorage.removeItem('user');
+  },
 
-function logout(redirUrl) {
+  logout: (redirUrl) => {
     this.deleteUserFromStorage();
 
-    window.location.href = redirUrl || '/'
-}
+    window.location.href = redirUrl || '/';
+  },
 
-function isLoggedIn() {
-    const user = getUser();
+  isLoggedIn: () => {
+    const user = userService.getUser();
     // console.log('isLoggedIn', user && user.token);
     return user && user.token;
-}
+  },
 
-function getAuthHeader() {
-    
+  getAuthHeader: () => {
     // return authorization header with jwt token
-    const user = getUser();
+    const user = userService.getUser();
     if (user && user.token) {
-        return { 'Authorization': 'Bearer ' + user.token };
-    } else {
-        return {};
+      return { Authorization: `Bearer ${user.token}` };
     }
-}
+    return {};
+  },
 
-function auth(user) {
+  auth: (user) => {
     if (user) {
-        localStorage.setItem('user', JSON.stringify(user));
+      localStorage.setItem('user', JSON.stringify(user));
     }
-}
+  },
+
+};
+export default userService;

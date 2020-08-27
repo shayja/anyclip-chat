@@ -1,21 +1,21 @@
-﻿
-function padDigits(number, digits) {
-    return Array(Math.max(digits - String(number).length + 1, 0)).join(0) + number;
-}
+// num = input number, dig = digits
+const padDigits = (num, dig) => Array(Math.max(dig - String(num).length + 1, 0)).join(0) + num;
 
-export const formatToString = (dt) => {
+const formatToString = (dt) => {
+  let date;
+  if (typeof (dt) === 'string') {
+    date = new Date(dt);
+  } else {
+    date = dt;
+  }
+  const separator = '/';
+  const day = padDigits(date.getDate(), 2);
+  const month = padDigits(date.getMonth() + 1, 2);
+  const year = date.getFullYear();
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
 
-    if (typeof (dt) === 'string') {
-        dt = new Date(dt);
-    }
-    const separator = '/',
-        date = padDigits(dt.getDate(), 2),
-        month = padDigits(dt.getMonth() + 1, 2),
-        year = dt.getFullYear(),
-        hours = dt.getHours(),
-        minutes = dt.getMinutes();
-
-    return `${date}${separator}${month}${separator}${year} ${hours}:${minutes}`;
+  return `${day}${separator}${month}${separator}${year} ${hours}:${minutes}`;
 };
 
-
+export default formatToString;

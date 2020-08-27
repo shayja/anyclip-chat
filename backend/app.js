@@ -40,7 +40,7 @@ app.use('/accounts', require('./accounts/account.controller'));
 app.use('/messages', require('./messages/message.controller'));
 
 // send errors as json
-app.use(function(err, req, res, next) {
+app.use(function(err, req, res/*, next*/) {
     // Log error message in our server's console
     console.error(err.message);
     if (!err.statusCode) {

@@ -1,5 +1,4 @@
-﻿import { userService } from '../services/user.service';
+import userService from '../services/user.service';
 
-export function authHeader() {
-    return userService.getAuthHeader();
-}
+const authHeader = () => userService.getAuthHeader();
+export default authHeader;
