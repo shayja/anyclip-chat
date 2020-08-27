@@ -4,6 +4,7 @@
   "description": "AnyClip chat server from Shay Jacoby",
   "start": "node app.js",
   "scripts": {
+    "lint": "eslint .\\ --config .eslintrc.json",
     "start:dev": "nodemon ./app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -21,6 +22,7 @@
     "socket.io": "^2.3.0"
   },
   "devDependencies": {
+    "eslint": "^6.8.0",
     "nodemon": "^2.0.4"
   }
 }

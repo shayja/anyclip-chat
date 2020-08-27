@@ -3,7 +3,7 @@ const {ChatMessage, User} = require('../db');
 const save = async ({ userId, message }) => {
     try {
         // Create a new user
-    await ChatMessage.create({ userId: userId, message: message });
+        await ChatMessage.create({ userId: userId, message: message });
 
     } catch (error) {
         if (error){
@@ -12,7 +12,7 @@ const save = async ({ userId, message }) => {
         }
     }
     return true;
-}
+};
 
 
 const getLatest = async (howManyRows) => {
@@ -27,7 +27,7 @@ const getLatest = async (howManyRows) => {
         limit: howManyRows,
         order: [['id', 'DESC']]
     }) || [];
-}
+};
 
 
 module.exports = {

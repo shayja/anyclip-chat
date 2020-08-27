@@ -1,4 +1,4 @@
-﻿const express = require('express');
+const express = require('express');
 const router = express.Router();
 const accountService = require('./account.service');
 const uploadBase64 = require('../fileupload');
@@ -13,13 +13,13 @@ const authenticate = (req, res, next) => {
 
     const saveUser = ()=>{
         accountService.authenticate(account)
-        .then((account) => {
-            console.log(account);
-            // setTokenCookie(res, refreshToken);
-            res.json(account);
-        })
-        .catch(next);
-    }
+            .then((account) => {
+                console.log(account);
+                // setTokenCookie(res, refreshToken);
+                res.json(account);
+            })
+            .catch(next);
+    };
 
     const imageUploaded = (fileName) => {
         account.avatar = fileName;
@@ -32,7 +32,7 @@ const authenticate = (req, res, next) => {
         saveUser();
     }
      
-}
+};
 
 // routes
 router.post('/authenticate', authenticate);

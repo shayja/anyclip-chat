@@ -55,6 +55,6 @@ const uploadBase64 = (base64Data, cb) => {
         console.log('DEBUG - feed:message: Saved to disk image attached by user:', userUploadedImagePath, data);
     });
     */
-}
+};
 
 module.exports = uploadBase64;

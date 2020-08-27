@@ -16,11 +16,11 @@ const chatSocket = (server)=>{
     
         // Once the second server has finished his job
         socket.on('disconnect', () => {
-            console.log(`disconnect`);
+            console.log('disconnect');
             socket.disconnect();
         });
     });
     
-}
+};
 
 module.exports = chatSocket;
