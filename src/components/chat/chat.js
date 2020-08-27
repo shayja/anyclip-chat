@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import Notifications from '../helpers/Notifications';
-import userService from '../services/user.service';
-import restApiService from '../services/restapi.service';
-import formatToString from '../helpers/utils';
-import './Chat.css';
+import Notifications from '../../helpers/Notifications';
+import userService from '../../services/user.service';
+import restApiService from '../../services/restapi.service';
+import formatToString from '../../helpers/utils';
+import './chat.css';
 
 const io = require('socket.io-client');
 

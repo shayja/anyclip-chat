@@ -1,11 +1,11 @@
 import React from 'react';
 import { Route, Redirect, BrowserRouter } from 'react-router-dom';
-import Chat from './components/Chat';
-import Login from './components/Login';
-import Header from './components/Header';
-import PrivateRoute from './helpers/PrivateRoute';
-import userService from './services/user.service';
-import './App.css';
+import Chat from '../chat/chat';
+import Login from '../Login';
+import Header from '../Header';
+import PrivateRoute from '../../helpers/PrivateRoute';
+import userService from '../../services/user.service';
+import './app.css';
 
 function App() {
   return (
