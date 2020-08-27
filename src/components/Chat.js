@@ -24,7 +24,7 @@ const Chat = () => {
     await restApiService.getAsync('messages/get-latest')
       .then((data) => {
         if (data) {
-          console.log('getLatest', data);
+          // console.log('getLatest', data);
           // Set messages list.
           if (data && data.length > 0) {
             setMessages(data);
