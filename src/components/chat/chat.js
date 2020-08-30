@@ -125,8 +125,6 @@ const Chat = () => {
           <button type="button" onClick={() => handleNewMessage()} className="btn btn-primary btn-sm">Send</button>
         </div>
       )}
-
-      <p className="credit">AnyClip chat app (Shay Jacoby Test 2020)</p>
     </div>
 
   );

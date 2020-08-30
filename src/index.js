@@ -5,7 +5,9 @@ import App from './components/app/app';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-  <App />,
-  document.getElementById('root'),
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root')
 );
 serviceWorker.unregister();
