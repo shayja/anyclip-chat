@@ -12,17 +12,15 @@ import './app.css';
 
 function App() {
   return (
-    <div className="app">
-      <Router>
-        <Header />
-        <Switch>
-          <Route exact path="/" render={() => (userService.isLoggedIn ? <Redirect to="/chat" /> : <Redirect to="/signin" />)} />
-          <Route path="/signin" component={SignIn} />
-          <PrivateRoute path="/chat" component={Chat} />
-        </Switch>
-        <Footer />
-      </Router>
-    </div>
+    <Router>
+      <Header />
+      <Switch>
+        <Route exact path="/" render={() => (userService.isLoggedIn ? <Redirect to="/chat" /> : <Redirect to="/signin" />)} />
+        <Route path="/signin" component={SignIn} />
+        <PrivateRoute path="/chat" component={Chat} />
+      </Switch>
+      <Footer />
+    </Router>
   );
 }
 

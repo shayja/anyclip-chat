@@ -12,8 +12,8 @@ const formatToString = (dt) => {
   const day = padDigits(date.getDate(), 2);
   const month = padDigits(date.getMonth() + 1, 2);
   const year = date.getFullYear();
-  const hours = date.getHours();
-  const minutes = date.getMinutes();
+  const hours = padDigits(date.getHours(), 2);
+  const minutes = padDigits(date.getMinutes(), 2);
 
   return `${day}${separator}${month}${separator}${year} ${hours}:${minutes}`;
 };
