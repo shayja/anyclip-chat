@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
-import Notifications from '../helpers/Notifications';
-import restApiService from '../services/restapi.service';
-import userService from '../services/user.service';
-import validateUploadFile from '../services/upload.service';
+import Notifications from '../../helpers/Notifications';
+import restApiService from '../../services/restapi.service';
+import userService from '../../services/user.service';
+import validateUploadFile from '../../services/upload.service';
+import './signin.css';
 
-const Login = () => {
+const SignIn = () => {
   const [username, setUsername] = useState('');
   const [avatar, setAvatar] = useState({});
   const [isLoggenIn, setIsLoggenIn] = useState(false);
@@ -80,33 +81,15 @@ const Login = () => {
   }
 
   return (
-    <div className="container">
-      <div className="col-md-6">
-        <Notifications.NotificationContainer />
-        <div className="col-sm">
-          <div className="form-group">
-            <label htmlFor="username">
-              Username:
-              <input name="username" type="text" placeholder="Choose Username" value={username} onChange={inputChangeHandler} className="form-control" />
-            </label>
-          </div>
-        </div>
-
-        <div className="col-sm">
-          <div className="form-group">
-            <label htmlFor="avatar">
-              Upload avatar
-              <input name="avatar" type="file" multiple={false} accept="image/jpeg, image/png, image/gif" className="form-control" onChange={validateFileUpload} />
-            </label>
-          </div>
-        </div>
-
-        <div className="form-group">
-          <button type="button" className="btn btn-success" disabled={!username} onClick={loginToChat}>Continue to AnyClip Chat room</button>
-        </div>
-
-      </div>
+    <div className="form-signin">
+      <Notifications.NotificationContainer />
+      <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
+      <label htmlFor="username" className="sr-only">Username</label>
+      <input id="username" name="username" type="text" placeholder="Choose Username" value={username} onChange={inputChangeHandler} className="form-control" />
+      <label htmlFor="avatar" className="sr-only">avatar</label>
+      <input name="avatar" type="file" multiple={false} accept="image/jpeg, image/png, image/gif" className="form-control" onChange={validateFileUpload} />
+      <button type="button" className="btn btn-lg btn-primary btn-block" disabled={!username} onClick={loginToChat}>Continue to Chat room</button>
     </div>
   );
 };
-export default Login;
+export default SignIn;

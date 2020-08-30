@@ -121,8 +121,15 @@ const Chat = () => {
               </div>
             </div>
           ))}
-          <input type="text" placeholder="Your Message" className="form-control" value={message} onChange={(e) => setMessage(e.target.value)} />
-          <button type="button" onClick={() => handleNewMessage()} className="btn btn-primary btn-sm">Send</button>
+          <div className="row">
+            <div className="col-2" />
+            <div className="col-7">
+              <input type="text" placeholder="Your Message" className="form-control" value={message} onChange={(e) => setMessage(e.target.value)} />
+            </div>
+            <div className="col-3">
+              <button type="button" onClick={() => handleNewMessage()} className="btn btn-primary btn-md"> Send </button>
+            </div>
+          </div>
         </div>
       )}
     </div>
