@@ -40,23 +40,6 @@ const Chat = () => {
       });
   };
 
-  useEffect(() => {
-    setIsLoading(true);
-    // set once the current user from the user token.
-    const currentUser = userService.getUser();
-
-    setUsername(currentUser.username);
-    setAvatar(currentUser.avatar);
-
-    // Get messages from data source
-    getLatest();
-
-    socket.on('RECEIVE_MESSAGE', (data) => {
-      console.log('RECEIVE_MESSAGE', data);
-      setMessages((m) => [...m, data]);
-    });
-  }, []);
-
   // save message to data source
   const saveMessage = async (chatMsg) => {
     await restApiService.postAsync('messages/save', chatMsg)
@@ -73,21 +56,47 @@ const Chat = () => {
       });
   };
 
+  useEffect(() => {
+    setIsLoading(true);
+    // set once the current user from the user token.
+    const currentUser = userService.getUser();
+
+    setUsername(currentUser.username);
+    setAvatar(currentUser.avatar);
+
+    // Get messages from data source
+    getLatest();
+
+    socket.on('SEND_MESSAGE', (data) => {
+      saveMessage(data);
+      setMessage('');
+    });
+
+    socket.on('RECEIVE_MESSAGE', (data) => {
+      console.log('RECEIVE_MESSAGE', data);
+      setMessages((m) => [...m, data]);
+    });
+  }, []);
+
+  /**
+   * Handles form button click
+   * Create a new chat message.
+   */
   const handleNewMessage = () => {
-    console.log('emitting new message');
-
-    const chatMsg = {
-      message,
-      createdAt: new Date(),
-      user: {
-        username,
-        avatar,
-      },
-    };
-
-    socket.emit('SEND_MESSAGE', chatMsg);
-    saveMessage(chatMsg);
-    setMessage('');
+    if (!username || !message) {
+      Notifications.error('Empty message', 'Please write some message');
+    } else {
+      const chatMsg = {
+        message,
+        createdAt: new Date(),
+        user: {
+          username,
+          avatar,
+        },
+      };
+      console.log('emitting new message');
+      socket.emit('SEND_MESSAGE', chatMsg);
+    }
   };
 
   return (

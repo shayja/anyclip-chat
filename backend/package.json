@@ -2,10 +2,11 @@
   "name": "anyclip-chat-server",
   "version": "1.0.0",
   "description": "AnyClip chat server from Shay Jacoby",
-  "start": "node app.js",
+  "main": "app.js",
   "scripts": {
-    "lint": "eslint .\\ --config .eslintrc.json",
-    "start:dev": "nodemon ./app.js",
+    "lint": "eslint --config .eslintrc.json --ignore-path .gitignore .",
+    "start": "node app.js",
+    "start:dev": "npm run lint && nodemon ./app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Shay Jacoby",

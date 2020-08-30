@@ -109,6 +109,6 @@ $RECYCLE.BIN/
 # Others
 lib/
 data/
-
+.editorconfig
 anyclip-chat-262e5b1ed58a.json
 *.env
