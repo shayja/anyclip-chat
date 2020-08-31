@@ -116,7 +116,12 @@ const Chat = () => {
                 <img src={`${process.env.REACT_APP_IMG_URL}${msg.user.avatar || 'none.png'}`} alt={msg.user.username} />
               </div>
               <div className="txt">
-                <p>{msg.message}</p>
+                <p>
+                  <b>
+                    {`${msg.user.username}: `}
+                  </b>
+                  {msg.message}
+                </p>
                 <small>{formatToString(msg.createdAt)}</small>
               </div>
             </div>

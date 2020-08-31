@@ -18,8 +18,12 @@
         "react"
     ],
     "rules": {
-        "linebreak-style": "off",
-        "no-console": "off",
-        "jsx-a11y/label-has-associated-control": "off"
+        "linebreak-style": ["error", "windows"],
+        //"no-console": "off",
+        "jsx-a11y/label-has-associated-control": [ "error", {
+            "required": {
+              "every": [ "nesting", "id"  ]
+            }
+          }]
     }
 }

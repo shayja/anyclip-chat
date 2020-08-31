@@ -1,6 +1,6 @@
 const imageToBase64 = (imageFile, handleFileRead) => {
   if (imageFile) {
-    console.log(`imageToBase64->imageFile: ${imageFile}`);
+    // console.log(`imageToBase64->imageFile: ${imageFile}`);
     const reader = new FileReader();
     reader.readAsDataURL(imageFile);
     reader.onloadend = (file) => {
@@ -16,13 +16,13 @@ const validateUploadFile = async (e, handleFileRead) => {
   let errormessage = null;
   if (value) {
     const validFileExtensions = ['image/jpg', 'image/png', 'image/jpeg'];
-    console.log(`file size: ${value.size}, type: ${value.type}`);
+    // console.log(`file size: ${value.size}, type: ${value.type}`);
 
     if (!validFileExtensions.includes(value.type)) {
       const ext = validFileExtensions.join();
       errormessage = `Please upload file type: ${ext.replace(/image/g, '').replace(/,/g, '')}`;
     } else if (value.size > 3145728) {
-      console.log(`current file size is too large: ${value.size}`);
+      // console.log(`current file size is too large: ${value.size}`);
       errormessage = 'File size limit is 3 MB';
     }
   } else {
@@ -33,7 +33,7 @@ const validateUploadFile = async (e, handleFileRead) => {
     throw new Error(errormessage);
   }
 
-  console.log('validateUploadFile', value);
+  // console.log('validateUploadFile', value);
 
   imageToBase64(value, handleFileRead);
 };

@@ -36,9 +36,15 @@
 	vertical-align: top;
 }
 
+.incoming .txt {
+	text-align: left;
+}
+
+
 .outgoing .txt {
 	float: right;
 	width: 60%;
+	text-align: right;
 }
 
 .incoming .txt p,
