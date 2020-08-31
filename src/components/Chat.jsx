@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import Notifications from '../helpers/Notifications';
 import userService from '../services/user.service';
 import restApiService from '../services/restapi.service';
-import formatToString from '../helpers/utils';
+import utils from '../helpers/utils';
 import './Chat.css';
 
 const io = require('socket.io-client');
 
+// make sure that this env variable is configured.
 if (!process.env.REACT_APP_API_BASE_URL) {
   throw new Error('FATAL ERROR: API_URL is not configured.');
 }
@@ -20,6 +21,9 @@ const Chat = () => {
   const [avatar, setAvatar] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
+  /**
+   * Get latest chat messages
+   */
   const getLatest = async () => {
     await restApiService.getAsync('messages/get-latest')
       .then((data) => {
@@ -40,12 +44,14 @@ const Chat = () => {
       });
   };
 
-  // save message to data source
+  /**
+   * save message to data source
+   */
   const saveMessage = async (chatMsg) => {
     await restApiService.postAsync('messages/save', chatMsg)
       .then((success) => {
         if (success) {
-          console.log('saveMessageToDb=', success);
+          // console.log('saveMessageToDb=', success);
           Notifications.success('Message saved', '');
         } else {
           Notifications.error('Message save failed', 'error when saving to db.');
@@ -73,7 +79,7 @@ const Chat = () => {
     });
 
     socket.on('RECEIVE_MESSAGE', (data) => {
-      console.log('RECEIVE_MESSAGE', data);
+      // console.log('RECEIVE_MESSAGE', data);
       setMessages((m) => [...m, data]);
     });
   }, []);
@@ -94,7 +100,7 @@ const Chat = () => {
           avatar,
         },
       };
-      console.log('emitting new message');
+      // console.log('emitting new message');
       socket.emit('SEND_MESSAGE', chatMsg);
     }
   };
@@ -102,7 +108,6 @@ const Chat = () => {
   return (
 
     <div className="container">
-
       <Notifications.NotificationContainer />
 
       {isLoading ? (
@@ -122,7 +127,7 @@ const Chat = () => {
                   </b>
                   {msg.message}
                 </p>
-                <small>{formatToString(msg.createdAt)}</small>
+                <small>{utils.formatDate(msg.createdAt)}</small>
               </div>
             </div>
           ))}
