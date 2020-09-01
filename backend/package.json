@@ -2,11 +2,11 @@
   "name": "anyclip-chat-server",
   "version": "1.0.0",
   "description": "AnyClip chat server from Shay Jacoby",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
     "lint": "eslint --config .eslintrc.json --ignore-path .gitignore .",
-    "start": "node app.js",
-    "start:dev": "npm run lint && nodemon ./app.js",
+    "start": "node server.js",
+    "start:dev": "npm run lint && nodemon ./server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Shay Jacoby",
@@ -14,7 +14,7 @@
   "dependencies": {
     "@google-cloud/storage": "^5.2.0",
     "body-parser": "^1.19.0",
-    "cors": "2.8.5",
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
