@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Notifications from '../helpers/Notifications';
 import userService from '../services/user.service';
 import restApiService from '../services/restapi.service';
-import utils from '../helpers/utils';
+import util from '../helpers/utils';
 import './Chat.css';
 
 const io = require('socket.io-client');
@@ -127,7 +127,7 @@ const Chat = () => {
                   </b>
                   {msg.message}
                 </p>
-                <small>{utils.formatDate(msg.createdAt)}</small>
+                <small>{util.formatDate(msg.createdAt)}</small>
               </div>
             </div>
           ))}
