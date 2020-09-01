@@ -38,4 +38,6 @@ const validateUploadFile = async (e, handleFileRead) => {
   imageToBase64(value, handleFileRead);
 };
 
-export default validateUploadFile;
+export default {
+  validateUploadFile,
+};

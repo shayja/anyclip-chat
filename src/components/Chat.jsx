@@ -39,7 +39,8 @@ const Chat = () => {
         setIsLoading(false);
       },
       (error) => {
-        Notifications.error('Latest messages get failed', error);
+        // console.error(error);
+        Notifications.error('Latest messages get failed', error || '');
         setIsLoading(false);
       });
   };
@@ -48,6 +49,7 @@ const Chat = () => {
    * save message to data source
    */
   const saveMessage = async (chatMsg) => {
+
     await restApiService.postAsync('messages/save', chatMsg)
       .then((success) => {
         if (success) {
@@ -58,6 +60,7 @@ const Chat = () => {
         }
       },
       (error) => {
+        // console.error(error);
         Notifications.error('Message save failed', error);
       });
   };
@@ -73,11 +76,6 @@ const Chat = () => {
     // Get messages from data source
     getLatest();
 
-    socket.on('SEND_MESSAGE', (data) => {
-      saveMessage(data);
-      setMessage('');
-    });
-
     socket.on('RECEIVE_MESSAGE', (data) => {
       // console.log('RECEIVE_MESSAGE', data);
       setMessages((m) => [...m, data]);
@@ -92,7 +90,7 @@ const Chat = () => {
     if (!username || !message) {
       Notifications.error('Empty message', 'Please write some message');
     } else {
-      const chatMsg = {
+      const data = {
         message,
         createdAt: new Date(),
         user: {
@@ -100,8 +98,10 @@ const Chat = () => {
           avatar,
         },
       };
-      // console.log('emitting new message');
-      socket.emit('SEND_MESSAGE', chatMsg);
+      // console.log('emitting new message', data);
+      socket.emit('SEND_MESSAGE', data);
+      saveMessage(data);
+      setMessage('');
     }
   };
 

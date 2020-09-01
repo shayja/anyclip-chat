@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 import Notifications from '../helpers/Notifications';
 import restApiService from '../services/restapi.service';
 import userService from '../services/user.service';
-import validateUploadFile from '../services/upload.service';
+import upload from '../services/upload.service';
 import './SignIn.css';
 
 const SignIn = () => {
@@ -19,12 +19,13 @@ const SignIn = () => {
 
   const validateFileUpload = (e) => {
     try {
-      validateUploadFile(e, (img) => {
+      upload.validateUploadFile(e, (img) => {
         if (img) {
           setAvatar(img);
         }
       });
     } catch (error) {
+      // console.error(error);
       Notifications.error('Login failed', error);
     }
   };
@@ -59,17 +60,18 @@ const SignIn = () => {
         }
       },
       (error) => {
+        // console.error(error);
         Notifications.error('Chat Login failed', error);
       });
   };
 
   const loginToChat = async (evt) => {
     evt.preventDefault();
-    console.log('loginToChat');
+    // console.log('loginToChat');
 
     const isValid = validate();
 
-    console.log('isValid', isValid);
+    // console.log('isValid', isValid);
 
     if (isValid) {
       await saveUser();

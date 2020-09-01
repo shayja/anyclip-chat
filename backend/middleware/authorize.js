@@ -8,9 +8,9 @@ const authorize = (req, res, next) => {
     const token = authHeader && authHeader.split(' ')[1];
     if (token == null) return res.sendStatus(401); // if there isn't any token
 
-    jwt.verify(token, parseEnv('TOKEN_SECRET'), (err, user) => {
-        console.log(`jwt.verify error ${err}`);
+    jwt.verify(token, parseEnv('TOKEN_SECRET'), (err, user) => {    
         if (err) {
+            console.log(`jwt.verify error ${err}`);
             return res.sendStatus(403);
         }
 

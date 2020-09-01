@@ -14,35 +14,37 @@ const errorMessage = (status) => {
   }
 };
 
-const globalService = {
-  handleResponse: (response) => new Promise((resolve, reject) => {
-    if (response.ok) {
-      const contentType = response.headers.get('content-type');
-      if (contentType && contentType.includes('application/json')) {
-        // call resolve if the method succeeds
-        response.json().then((json) => resolve(json));
-      } else {
-        resolve();
-      }
+const handleResponse = (response) => new Promise((resolve, reject) => {
+  if (response.ok) {
+    const contentType = response.headers.get('content-type');
+    if (contentType && contentType.includes('application/json')) {
+      // call resolve if the method succeeds
+      response.json().then((json) => resolve(json));
     } else {
-      if ([401, 403].indexOf(response.status) !== -1) {
-        Notifications.error('', 'Please sign in again.');
-        // userService.logout('/login');
-      }
-
-      response.text().then((text) => {
-        try {
-          reject(JSON.parse(text));
-        } catch (e) {
-          reject(text || errorMessage(response.status));
-        }
-      });
-      // console.log(response.status);
+      resolve();
     }
-  }),
-  handleError: (error) => {
-    // console.error(`error:${error}`);
-    Promise.reject(error && error.message);
-  },
+  } else {
+    if ([401, 403].indexOf(response.status) !== -1) {
+      Notifications.error('', 'Please sign in again.');
+      // userService.logout('/login');
+    }
+
+    response.text().then((text) => {
+      try {
+        reject(JSON.parse(text));
+      } catch (e) {
+        reject(text || errorMessage(response.status));
+      }
+    });
+    // console.log(response.status);
+  }
+});
+const handleError = (error) => {
+  // console.error(`error:${error}`);
+  Promise.reject(error && error.message);
 };
-export default globalService;
+
+export default {
+  handleResponse,
+  handleError,
+};
