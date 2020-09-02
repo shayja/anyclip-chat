@@ -40,7 +40,7 @@ const Chat = () => {
       },
       (error) => {
         // console.error(error);
-        Notifications.error('Latest messages get failed', error || '');
+        Notifications.error('Latest messages get failed', error);
         setIsLoading(false);
       });
   };
@@ -49,12 +49,11 @@ const Chat = () => {
    * save message to data source
    */
   const saveMessage = async (chatMsg) => {
-
     await restApiService.postAsync('messages/save', chatMsg)
       .then((success) => {
         if (success) {
           // console.log('saveMessageToDb=', success);
-          Notifications.success('Message saved', '');
+          Notifications.success('OK', 'Message successfuly saved');
         } else {
           Notifications.error('Message save failed', 'error when saving to db.');
         }
@@ -108,8 +107,6 @@ const Chat = () => {
   return (
 
     <div className="container">
-      <Notifications.NotificationContainer />
-
       {isLoading ? (
         <img alt="Loading" src={`${process.env.PUBLIC_URL}/img/loading.gif`} />
       ) : (

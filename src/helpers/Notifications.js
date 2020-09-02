@@ -1,28 +1,28 @@
-import { NotificationContainer, NotificationManager } from 'react-notifications';
-import 'react-notifications/dist/react-notifications.css';
+import { store } from 'react-notifications-component';
 
-const notificationInMs = 2000;
-const errorNotificationInMs = 1000 * 15;
-
-const wrapper = (title, message, callback, name) => {
-  const ms = name === 'error' ? errorNotificationInMs : notificationInMs;
-  let msg;
-  if (name === 'error' && message.error) {
-    msg = message.error;
-  } else {
-    msg = message;
-  }
-
-  NotificationManager[name](msg, title, ms, callback);
-  if (callback) {
-    window.setTimeout(callback, ms);
-  }
+const setMessage = (header, msg, msgType) => {
+  store.addNotification({
+    title: header,
+    message: msg,
+    type: msgType,
+    container: 'top-right',
+    dismiss: {
+      duration: 3000,
+      onScreen: true,
+    },
+  });
 };
 
+const success = (header, message) => {
+  setMessage(header, message, 'success');
+};
+
+const error = (header, message) => {
+  setMessage(header, message, 'danger');
+};
+
+// info default warning
 export default {
-  info: (title, message, callback) => wrapper(title, message, callback, 'info'),
-  success: (title, message, callback) => wrapper(title, message, callback, 'success'),
-  warning: (title, message, callback) => wrapper(title, message, callback, 'warning'),
-  error: (title, message, callback) => wrapper(title, message, callback, 'error'),
-  NotificationContainer,
+  success,
+  error,
 };

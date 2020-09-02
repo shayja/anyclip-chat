@@ -84,7 +84,6 @@ const SignIn = () => {
 
   return (
     <div className="form-signin">
-      <Notifications.NotificationContainer />
       <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
       <label htmlFor="username" className="sr-only">Username</label>
       <input id="username" name="username" type="text" placeholder="Choose Username" value={username} onChange={inputChangeHandler} className="form-control" />
