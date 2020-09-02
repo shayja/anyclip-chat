@@ -14,7 +14,7 @@ if (result.error) {
 // end dotenv
 
 const cors = require('cors');
-const bodyParser = require('body-parser');
+
 const app = express();
 
 // It's a test app so let's requests from any origin
@@ -25,10 +25,7 @@ var corsOptions = {
 app.use(cors(corsOptions));
 
 // parse requests of content-type - application/json
-app.use(bodyParser.json());
-
-// parse requests of content-type - application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
 
 // Set the routes
 require('./routes')(app);
